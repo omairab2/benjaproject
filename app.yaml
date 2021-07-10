@@ -1,0 +1,15 @@
+runtime: python27
+service: view
+threadsafe: true
+
+handlers:
+  - url: /(.*\.(gif|png|jpeg|jpg|css|js|ico)(|\.map))$
+    application_readable: false
+    static_files: dist/platzi-store/\1
+    require_matching_file: false
+    upload: dist/(.*)(|\.map)
+  - url: /(.*)
+    application_readable: false
+    static_files: dist/platzi-store/index.html
+    require_matching_file: false
+    upload: dist/platzi-store/index.html

@@ -1,0 +1,56 @@
+<mat-horizontal-stepper>
+  <mat-step>
+    <ng-template matStepLabel>Sus productos</ng-template>
+    <div *ngIf="products$ | async as products">
+      <p *ngIf="products.length === 0">no hay productos</p>
+
+      <div class="" *ngFor="let product of products"  style="border: 1px solid red">
+        <div
+          class="row"
+
+        >
+          <div class="col-xs-12 col-sm-2 col-md-2">
+            <div class="box">
+              <img class="image" [src]="product.img" alt="" />
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="box">
+              {{ product.descripcion }}
+            </div>
+            <div>
+              <select class="form" aria-label="Default select example">
+                <option selected>Cantidad</option>
+                <option value="1" selected>1</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="row">
+            <div class="box">
+              {{ product.precio }}
+            </div>
+            <div>x</div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button mat-button matStepperNext>Siguiente</button>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Datos personales</ng-template>
+    <h1>contenifo</h1>
+    <button mat-button matStepperPrevious>Volver</button>
+    <button mat-button matStepperNext>Siguiente</button>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Pago</ng-template>
+    <h1>contenifo</h1>
+    <button mat-button matStepperPrevious>Volver</button>
+    <button mat-button matStepperNext>Siguiente</button>
+  </mat-step>
+</mat-horizontal-stepper>
