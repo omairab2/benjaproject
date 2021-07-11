@@ -1,56 +1,292 @@
 <mat-horizontal-stepper>
   <mat-step>
     <ng-template matStepLabel>Sus productos</ng-template>
-    <div *ngIf="products$ | async as products">
-      <p *ngIf="products.length === 0">no hay productos</p>
-
-      <div class="" *ngFor="let product of products"  style="border: 1px solid red">
-        <div
-          class="row"
-
-        >
+    <div>
+      <!-- <div *ngIf="products$ | async as products">
+      <p *ngIf="products.length === 0">No hay productos seleccionados</p> -->
+      <div
+        class=""
+        *ngFor="let product of productsDummy"
+        style="border: 1px solid #e0e0e0"
+      >
+        <div class="row">
           <div class="col-xs-12 col-sm-2 col-md-2">
             <div class="box">
               <img class="image" [src]="product.img" alt="" />
             </div>
           </div>
-          <div class="col-xs-12 col-sm-4 col-md-4">
-            <div class="box">
+          <div class="col-xs-12 col-sm-4 col-md-4 ml-20">
+            <div class="box mt-20-mb-10">
               {{ product.descripcion }}
             </div>
-            <div>
-              <select class="form" aria-label="Default select example">
-                <option selected>Cantidad</option>
-                <option value="1" selected>1</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-4 col-md-4">
             <div class="row">
-            <div class="box">
-              {{ product.precio }}
+              <div>
+                <select class="form-select" [(ngModel)]="product.cantidad" (ngModelChange)="sumTotal();">
+                  <option value="1" selected>1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+              <div class="box p-close">
+                <button mat-button (click)="deleteItem(product.id)">
+                  <mat-icon>delete_outline</mat-icon>
+                </button>
+              </div>
             </div>
-            <div>x</div>
           </div>
+          <div class="col-xs-12 col-sm-4 col-md-4 ml-20">
+            <div class="row">
+              <div class="box mt-20-mb-10" style="font-size: 22px">
+                S/. {{ product.precio }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <button mat-button matStepperNext>Siguiente</button>
+    <div class="aling-r">
+      <button
+        class="mt-20-mb-10"
+        mat-raised-button
+        color="primary"
+        matStepperNext
+      >
+        Siguiente
+      </button>
+    </div>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Datos personales</ng-template>
-    <h1>contenifo</h1>
-    <button mat-button matStepperPrevious>Volver</button>
-    <button mat-button matStepperNext>Siguiente</button>
+    <h1>DATOS PERSONALES</h1>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="ml-20 col-md-4 col-xs-12">
+          <label class="label">NOMBRE</label>
+          <input
+            type="text"
+            [(ngModel)]="registroPago.datosDireccion.nombre"
+            class="form-input"
+            placeholder=""
+            style="width: 100%"
+          />
+        </div>
+        <div class="ml-20 col-md-4 col-xs-12">
+          <label class="label">APELLIDOS</label>
+          <input
+            type="text"
+            [(ngModel)]="registroPago.datosDireccion.apellidos"
+            class="form-input"
+            placeholder=""
+            style="width: 100%"
+          />
+        </div>
+      </div>
+      <div class="row mt-20-mb-10">
+        <div class="ml-20 col-md-4 col-xs-12">
+          <label class="label">DEPARTAMENTO</label>
+          <select
+            class="form-select-info"
+            [(ngModel)]="registroPago.datosDireccion.departamento"
+          >
+            <option value="Lima" selected>LIMA</option>
+          </select>
+        </div>
+        <div class="ml-20 col-md-4 col-xs-12">
+          <label class="label">PROVINCIA</label>
+          <select
+            class="form-select-info"
+            [(ngModel)]="registroPago.datosDireccion.provincia"
+          >
+            <option value="Lima" selected>LIMA</option>
+          </select>
+        </div>
+      </div>
+      <div class="row mt-20-mb-10">
+        <div class="ml-20 col-md-4 col-xs-12">
+          <label class="label">CIUDAD</label>
+          <select
+            class="form-select-info"
+            [(ngModel)]="registroPago.datosDireccion.ciudad"
+          >
+            <option value="Lima" selected>LIMA</option>
+          </select>
+        </div>
+      </div>
+      <div class="row mt-20-mb-10">
+        <div class="ml-20 col-md-8 col-xs-12">
+          <label class="label">DIRECCION</label>
+          <input
+            type="text"
+            [(ngModel)]="registroPago.datosDireccion.direccion"
+            class="form-input"
+            placeholder=""
+            style="width: 100%"
+          />
+        </div>
+      </div>
+      <div class="row mt-20-mb-10">
+        <div class="ml-20 col-md-8 col-xs-12">
+          <label class="label">INFORMACION ADICIONAL</label>
+          <input
+            type="text"
+            [(ngModel)]="registroPago.datosDireccion.informacionAdicional"
+            class="form-input"
+            placeholder=""
+            style="width: 100%"
+          />
+        </div>
+      </div>
+      <div class="row mt-20-mb-10">
+        <div class="ml-20 col-md-4 col-xs-12">
+          <label class="label">TELEFONO</label>
+          <input
+            type="text"
+            [(ngModel)]="registroPago.datosDireccion.telefono"
+            class="form-input"
+            placeholder=""
+            style="width: 100%"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="aling-r">
+      <button
+        class="mt-20-mb-10"
+        mat-raised-button
+        color="basic"
+        matStepperPrevious
+      >
+        Volver
+      </button>
+      <button
+        class="mt-20-mb-10 ml-20"
+        mat-raised-button
+        color="primary"
+        matStepperNext
+      >
+        Siguiente
+      </button>
+    </div>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Pago</ng-template>
-    <h1>contenifo</h1>
-    <button mat-button matStepperPrevious>Volver</button>
-    <button mat-button matStepperNext>Siguiente</button>
+    <h1>PAGO</h1>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="ml-20 col-md-4 col-xs-12">
+          <label class="label">NOMBRE</label>
+          <p>
+            {{ registroPago.datosDireccion.nombre }}
+            {{ registroPago.datosDireccion.apellidos }}
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="ml-20 col-md-4 col-xs-12">
+          <label class="label">TIPO DE DOCUMENTO</label>
+          <select
+            class="form-select-info"
+            [(ngModel)]="registroPago.datosPago.documentoIdentidad"
+          >
+            <option value="DNI" selected>DNI</option>
+            <option value="CE" selected>CE</option>
+            <option value="RUC" selected>RUC</option>
+          </select>
+        </div>
+        <div class="ml-20 col-md-4 col-xs-12">
+          <label class="label">DOCUMENTO</label>
+          <input
+            type="text"
+            [(ngModel)]="registroPago.datosPago.numeroDocumentoIdentidad"
+            class="form-input"
+            placeholder=""
+            style="width: 100%"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="ml-20 col-md-4 col-xs-12 mt-20-mb-10">
+          <label class="label">FORMA DE PAGO</label>
+          <select
+            class="form-select-info"
+            [(ngModel)]="registroPago.datosPago.tipoPago"
+          >
+            <option value="Visa" selected>VISA</option>
+            <option value="Efectivo" selected>EFECTIVO</option>
+          </select>
+        </div>
+      </div>
+      <div class="ml-20 mt-20-mb-10">
+        <table>
+          <thead style="padding: 30px">
+            <th scope="col">Producto</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Monto</th>
+          </thead>
+          <tbody>
+            <tr
+              style="padding: 20px; background-color: #ccc"
+              *ngFor="let product of productsDummy"
+            >
+              <td>
+                {{ product.descripcion }}
+              </td>
+              <td>{{ product.cantidad }}</td>
+              <td>S/. {{ product.precio * product.cantidad  | number: "1.2-2"}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="mt-20-mb-10">
+          <p class="total">Total: S/ {{ total | number: "1.2-2" }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="aling-r">
+      <button
+        class="mt-20-mb-10"
+        mat-raised-button
+        color="basic"
+        matStepperPrevious
+      >
+        Volver
+      </button>
+      <button
+        class="mt-20-mb-10 ml-20"
+        mat-raised-button
+        color="primary"
+        matStepperNext
+        (click)="abrirDialog(dialogTemplate)"
+      >
+        Pagar
+      </button>
+    </div>
   </mat-step>
 </mat-horizontal-stepper>
+
+<!--Dialog -->
+<ng-template #dialogTemplate>
+  <h1 mat-dialog-title class="aling-c">Resultado de la transacción</h1>
+  <div mat-dialog-content>
+    <div *ngIf="resultadoPago.resultado == true">
+      <p class="pagoExitoso">Pago completado exitosamente</p>
+      <br>
+      <p><b>Fecha de venta:</b> {{resultadoPago.montosPago.fechaDocumento}}</p>
+      <p><b>Boleta de venta:</b> {{resultadoPago.montosPago.numeroDocuPago}}</p>
+      <p><b>Nro de pedido:</b> {{resultadoPago.montosPago.numeroPedido}}</p>
+      <br>
+      <div style="text-align: right;">
+      <p><b>Op. gravada:</b> S/ {{resultadoPago.montosPago.montoSinIGV}}</p>
+      <p><b>IGV:</b> S/{{resultadoPago.montosPago.montoIGV}}</p>
+      <p><b>Importe total:</b> S/ {{resultadoPago.montosPago.montoNeto}}</p>
+      </div>
+    </div>
+    <div *ngIf="resultadoPago.resultado == false">
+      <p class="pagoDenegado">Ha ocurrido un error</p>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close routerLink="/products">Cerrar</button>
+  </div>
+</ng-template>

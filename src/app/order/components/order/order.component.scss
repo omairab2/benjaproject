@@ -1,4 +1,70 @@
-@import url(../../../shared/css/bootstrap.min.css);
-.image{
+.image {
   max-width: 100%;
+}
+
+.mt-20-mb-10 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.p-close {
+  padding: 0px 30px;
+}
+
+.ml-20 {
+  margin-left: 20px;
+}
+
+.form-select {
+  height: 28px;
+  border-color: #3f51b5;
+  border-radius: 4px;
+  width: 60px;
+  margin-top: 6px;
+}
+
+.label {
+  display: inherit;
+  color: #3f51b5;
+  font-weight: bold;
+  font-size: 14px;
+}
+.form-input {
+  height: 35px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-select-info {
+  height: 40px;
+  width: 100%;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+}
+.total {
+  text-align: right;
+  font-weight: bold;
+  font-size: 25px;
+}
+.aling-r {
+  text-align: right;
+}
+.aling-c {
+  text-align: center;
+}
+
+.pagoExitoso{
+text-align: center;
+color: #00FA9A;
+}
+.pagoDenegado{
+  text-align: center;
+  color: red
 }
