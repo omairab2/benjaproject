@@ -47,23 +47,23 @@ export class OrderComponent implements OnInit {
   ];
   registroPago: any = {
     datosDireccion: {
-      nombre: "Juan Benjamin",
-      apellidos: "Farromeque Ricalde",
-      direccion: "Mexico 747",
-      informacionAdicional: "A una cuadra del colegio",
+      nombre: "",
+      apellidos: "",
+      direccion: "",
+      informacionAdicional: "",
       departamento: "Lima",
       provincia: "Lima",
       ciudad: "Lima",
       pais: "Peru",
-      telefono: "012521230",
+      telefono: "",
     },
     datosPago: {
       //tipo de pago
       tipoPago: "Efectivo",
       tipoDocumento: "Boleta",
       documentoIdentidad: "DNI",
-      numeroDocumentoIdentidad: "770149334",
-      razonSocial: "JUAN BENJAMIN FARROMEQUE RICALDE",
+      numeroDocumentoIdentidad: "",
+      razonSocial: "",
     },
     articulosPago: [
       {
