@@ -12,32 +12,32 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/home',
+        redirectTo: '/products',
         pathMatch: 'full',
       },
-      {
-        path: 'home',
-        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
-      },
+      // {
+      //   path: 'home',
+      //   loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+      // },
       {
         path: 'products',
-        canActivate: [AdminGuard],
+        //canActivate: [AdminGuard],
         loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
       },
-      {
-        path: 'contact',
-        canActivate: [AdminGuard],
-        loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
-      },
+      // {
+      //   path: 'contact',
+      //   canActivate: [AdminGuard],
+      //   loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
+      // },
       {
         path: 'order',
         loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
       },
-      {
-        path: 'demo',
-        canActivate: [AdminGuard],
-        loadChildren: () => import('./demo/demo.module').then(m => m.DemoModule)
-      },
+      // {
+      //   path: 'demo',
+      //   canActivate: [AdminGuard],
+      //   loadChildren: () => import('./demo/demo.module').then(m => m.DemoModule)
+      // },
     ]
   },
   {

@@ -3,13 +3,13 @@
     <div class="container">
       <div class="row between-xs middle-xs header-row">
         <nav>
-          <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
-          <a mat-button routerLink="/products" routerLinkActive="active"
-            >Products</a
-          >
-          <a mat-button routerLink="/contact" routerLinkActive="active"
-            >Contact</a
-          >
+          <div mat-button routerLink="/products" routerLinkActive="active" style="cursor: pointer; justify-content: center; display: flex; flex-direction: row;">
+            <!-- <img src="../../../../assets/images/logo-vende-fcil.png" style="width: 100px; height: 50px;"> -->
+            Listado de Productos
+          </div>
+          <!-- <a mat-button routerLink="/home" routerLinkActive="active">Home</a> -->
+          <!-- <a mat-button routerLink="/products" routerLinkActive="active" style="background-color: cornflowerblue;">Listado de Productos</a> -->
+          <!-- <a mat-button routerLink="/contact" routerLinkActive="active">Contact</a> -->
         </nav>
         <a routerLink="/order" mat-raised-button [matBadge]="total$ | async" matBadgeColor="warn">
           <mat-icon>shopping_cart</mat-icon>

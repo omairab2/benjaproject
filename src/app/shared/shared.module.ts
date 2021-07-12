@@ -11,19 +11,23 @@ import { CartComponent } from './components/cart/cart.component';
 
 import { MaterialModule } from './../material/material.module';
 
+import { Loading2Component } from './loading2/loading2.component';
+
 @NgModule({
   declarations: [
     ExponentialPipe,
     HighlightDirective,
     HeaderComponent,
     FooterComponent,
-    CartComponent
+    CartComponent,
+    Loading2Component
   ],
   exports: [
     ExponentialPipe,
     HighlightDirective,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    Loading2Component
   ],
   imports: [
     CommonModule,

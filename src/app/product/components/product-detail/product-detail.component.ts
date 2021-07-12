@@ -41,12 +41,17 @@ export class ProductDetailComponent implements OnInit {
       precio: 3000,
       marca: 'nuevo producto',
       stock: 0,
-      categoriaId: 0
+      categoriaId: 0,
+      marcaId: 0,
+      tipoId: 0,
+      cantidad: 1
     };
-    this.productsService.createProduct(newProduct)
-    .subscribe(product => {
-      console.log(product);
+
+    this.productsService.createProduct(newProduct).subscribe(
+      product => {
+        console.log("product",product);
     });
+
   }
 
   updateProduct() {

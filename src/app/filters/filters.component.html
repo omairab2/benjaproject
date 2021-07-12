@@ -1,0 +1,36 @@
+<div class="filters">
+
+  <h5>Filtrar por Categoría:</h5>
+  <div class="category-filter filter-wrapper" *ngFor='let filter of categorias'>
+    <label class="fake-checkbox">
+      <!-- <input type="checkbox" checked (change)='onInputChange($event, filter, "category")'> -->
+      <input type="radio" name="categoria" [checked]='filter.checked' (click)='onInputChange($event, filter, "category")'>
+      <span class="circle"><span class="fill"></span></span>
+      <span class="label">{{filter.descripcion}}</span>
+      <span></span>
+    </label>
+  </div>
+
+  <h5>Filtrar por Marca:</h5>
+  <div class="custom-filter filter-wrapper" *ngFor='let filter of marcas'>
+      <label class="fake-checkbox">
+        <input type="radio" name="marca" [checked]='filter.checked' (click)='onInputChange($event, filter, "mark")'>
+        <!-- <input type="checkbox" checked (change)='onInputChange($event, filter, "price")'> -->
+        <span class="circle"><span class="fill"></span></span>
+        <span class="label">{{filter.descripcion}}</span>
+        <span></span>
+      </label>
+  </div>
+
+  <h5>Filtar por Tipo:</h5>
+  <div class="custom-filter filter-wrapper" *ngFor='let filter of tipos'>
+      <label class="fake-checkbox">
+        <!-- <input type="checkbox" checked (change)='onInputChange($event, filter, "custom")'> -->
+        <input type="radio" name="tipo" [checked]='filter.checked' (click)='onInputChange($event, filter, "type")'>
+        <span class="circle"><span class="fill"></span></span>
+        <span class="label">{{filter.descripcion}}</span>
+        <span></span>
+      </label>
+  </div>
+
+</div>

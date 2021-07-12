@@ -13,38 +13,7 @@ import { CartService } from "./../../../core/services/cart.service";
 export class OrderComponent implements OnInit {
   products$: Observable<Product[]>;
   total: any;
-  productsDummy = [
-    {
-      id: 1,
-      cantidad: 1,
-      stock: 10,
-      precio: 89.9,
-      marca: "Adidas",
-      descripcion: "Polo Adidas Hombre Talla S",
-      categoriaId: "1",
-      img: "https://imgvendefacil.blob.core.windows.net/imagenes/imagen-6.jpg",
-    },
-    {
-      id: 2,
-      cantidad: 1,
-      stock: 10,
-      precio: 89.9,
-      marca: "Adidas",
-      descripcion: "Polo Adidas Hombre Talla S",
-      categoriaId: "1",
-      img: "https://imgvendefacil.blob.core.windows.net/imagenes/imagen-6.jpg",
-    },
-    {
-      id: 3,
-      cantidad: 3,
-      stock: 10,
-      precio: 89.9,
-      marca: "Adidas",
-      descripcion: "Polo Adidas Hombre Talla S",
-      categoriaId: "1",
-      img: "https://imgvendefacil.blob.core.windows.net/imagenes/imagen-6.jpg",
-    },
-  ];
+  productsDummy = [];
   registroPago: any = {
     datosDireccion: {
       nombre: "",
@@ -58,8 +27,8 @@ export class OrderComponent implements OnInit {
       telefono: "",
     },
     datosPago: {
-      //tipo de pago
-      tipoPago: "Efectivo",
+      //Faltatipo de pago
+      tipoPago: "Visa",
       tipoDocumento: "Boleta",
       documentoIdentidad: "DNI",
       numeroDocumentoIdentidad: "",
@@ -68,22 +37,11 @@ export class OrderComponent implements OnInit {
     articulosPago: [
       {
         cantidad: 1,
-        codArticulo: "sl-001",
-      },
-      {
-        cantidad: 2,
-        codArticulo: "sl-002",
-      },
-      {
-        cantidad: 3,
-        codArticulo: "sl-003",
-      },
-      {
-        cantidad: 4,
-        codArticulo: "sl-004",
-      },
+        id: "1",
+      }
     ],
   };
+
   resultadoPago: any = {
     resultado: true,
     mensaje: "|Pago completado correctamente.",
@@ -108,8 +66,13 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    //console.log(this.products$)
+    console.log(JSON.parse(localStorage.getItem("product")))
+    if(JSON.parse(localStorage.getItem("product")) != null){
+      this.productsDummy.push(JSON.parse(localStorage.getItem("product")));
+    }
     this.sumTotal();
-    console.log(this.products$)
   }
 
   deleteItem(id) {
@@ -126,6 +89,7 @@ export class OrderComponent implements OnInit {
       array.push(element.precio * element.cantidad);
     });
     this.total = array.reduce((a, b) => a + b, 0);
+    console.log(this.total)
   }
 
   abrirDialog(templateRef) {
@@ -136,5 +100,10 @@ export class OrderComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       this.route.navigate(["/products"]);
     });
+  }
+
+  sendDataPago(){
+    this.registroPago.articulosPago = this.productsDummy;
+    let params = this.registroPago;
   }
 }

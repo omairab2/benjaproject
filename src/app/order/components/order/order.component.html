@@ -1,9 +1,10 @@
 <mat-horizontal-stepper>
   <mat-step>
     <ng-template matStepLabel>Sus productos</ng-template>
-    <div>
-      <!-- <div *ngIf="products$ | async as products">
-      <p *ngIf="products.length === 0">No hay productos seleccionados</p> -->
+
+    <p *ngIf="productsDummy == ''">No hay productos seleccionados</p>
+
+    <div *ngIf="productsDummy.length > 0">
       <div
         class=""
         *ngFor="let product of productsDummy"
@@ -21,12 +22,21 @@
             </div>
             <div class="row">
               <div>
-                <select class="form-select" [(ngModel)]="product.cantidad" (ngModelChange)="sumTotal();">
+                <select
+                  class="form-select"
+                  [(ngModel)]="product.cantidad"
+                  (ngModelChange)="sumTotal()"
+                >
                   <option value="1" selected>1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                   <option value="4">4</option>
                   <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
                 </select>
               </div>
               <div class="box p-close">
@@ -48,10 +58,20 @@
     </div>
     <div class="aling-r">
       <button
+        routerLink="/products"
         class="mt-20-mb-10"
+        mat-raised-button
+        color="basic"
+        matStepperPrevious
+      >
+        Volver
+      </button>
+      <button
+        class="ml-20 mt-20-mb-10"
         mat-raised-button
         color="primary"
         matStepperNext
+        [disabled]="productsDummy == ''"
       >
         Siguiente
       </button>
@@ -59,7 +79,7 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Datos personales</ng-template>
-    <h1>DATOS PERSONALES</h1>
+    <h1>Datos personales</h1>
     <div class="col-md-12">
       <div class="row">
         <div class="ml-20 col-md-4 col-xs-12">
@@ -116,7 +136,7 @@
       </div>
       <div class="row mt-20-mb-10">
         <div class="ml-20 col-md-8 col-xs-12">
-          <label class="label">DIRECCION</label>
+          <label class="label">DIRECCIÓN</label>
           <input
             type="text"
             [(ngModel)]="registroPago.datosDireccion.direccion"
@@ -128,7 +148,7 @@
       </div>
       <div class="row mt-20-mb-10">
         <div class="ml-20 col-md-8 col-xs-12">
-          <label class="label">INFORMACION ADICIONAL</label>
+          <label class="label">INFORMACIÓN ADICIONAL</label>
           <input
             type="text"
             [(ngModel)]="registroPago.datosDireccion.informacionAdicional"
@@ -140,7 +160,7 @@
       </div>
       <div class="row mt-20-mb-10">
         <div class="ml-20 col-md-4 col-xs-12">
-          <label class="label">TELEFONO</label>
+          <label class="label">TELÉFONO</label>
           <input
             type="text"
             [(ngModel)]="registroPago.datosDireccion.telefono"
@@ -171,8 +191,8 @@
     </div>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Pago</ng-template>
-    <h1>PAGO</h1>
+    <ng-template matStepLabel>Confirmar compra</ng-template>
+    <h1>Confirmar compra</h1>
     <div class="col-md-12">
       <div class="row">
         <div class="ml-20 col-md-4 col-xs-12">
@@ -183,9 +203,22 @@
           </p>
         </div>
       </div>
+
+      <div class="row">
+        <div class="ml-20 col-md-4 col-xs-12 mt-20-mb-10">
+          <label class="label">TIPO DE DOCUMENTO</label>
+          <select
+            class="form-select-info"
+            [(ngModel)]="registroPago.datosPago.tipoDocumento"
+          >
+            <option value="Boleta" selected>BOLETA</option>
+            <option value="Factura" selected>FACTURA</option>
+          </select>
+        </div>
+      </div>
       <div class="row">
         <div class="ml-20 col-md-4 col-xs-12">
-          <label class="label">TIPO DE DOCUMENTO</label>
+          <label class="label">DOCUMENTO IDENTIDAD</label>
           <select
             class="form-select-info"
             [(ngModel)]="registroPago.datosPago.documentoIdentidad"
@@ -196,7 +229,7 @@
           </select>
         </div>
         <div class="ml-20 col-md-4 col-xs-12">
-          <label class="label">DOCUMENTO</label>
+          <label class="label">NÚMERO DOCUMENTO</label>
           <input
             type="text"
             [(ngModel)]="registroPago.datosPago.numeroDocumentoIdentidad"
@@ -214,7 +247,7 @@
             [(ngModel)]="registroPago.datosPago.tipoPago"
           >
             <option value="Visa" selected>VISA</option>
-            <option value="Efectivo" selected>EFECTIVO</option>
+            <!--  <option value="Efectivo" selected>EFECTIVO</option> -->
           </select>
         </div>
       </div>
@@ -234,7 +267,10 @@
                 {{ product.descripcion }}
               </td>
               <td>{{ product.cantidad }}</td>
-              <td>S/. {{ product.precio * product.cantidad  | number: "1.2-2"}}</td>
+              <td>
+                S/. {{ product.precio * product.cantidad | number: "1.2-2" }}
+              </td>
+
             </tr>
           </tbody>
         </table>
@@ -242,6 +278,32 @@
           <p class="total">Total: S/ {{ total | number: "1.2-2" }}</p>
         </div>
       </div>
+    </div>
+    <div class="aling-r">
+      <button
+        class="mt-20-mb-10"
+        mat-raised-button
+        color="basic"
+        matStepperPrevious
+      >
+        Volver
+      </button>
+      <button
+        class="ml-20 mt-20-mb-10"
+        mat-raised-button
+        color="primary"
+        matStepperNext
+        [disabled]="productsDummy == ''"
+      >
+        Siguiente
+      </button>
+    </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Pago</ng-template>
+    <h1>Pago</h1>
+    <div class="col-md-12">
+      <!-- aqui agregar componente de visa-->
     </div>
     <div class="aling-r">
       <button
@@ -271,15 +333,19 @@
   <div mat-dialog-content>
     <div *ngIf="resultadoPago.resultado == true">
       <p class="pagoExitoso">Pago completado exitosamente</p>
-      <br>
-      <p><b>Fecha de venta:</b> {{resultadoPago.montosPago.fechaDocumento}}</p>
-      <p><b>Boleta de venta:</b> {{resultadoPago.montosPago.numeroDocuPago}}</p>
-      <p><b>Nro de pedido:</b> {{resultadoPago.montosPago.numeroPedido}}</p>
-      <br>
-      <div style="text-align: right;">
-      <p><b>Op. gravada:</b> S/ {{resultadoPago.montosPago.montoSinIGV}}</p>
-      <p><b>IGV:</b> S/{{resultadoPago.montosPago.montoIGV}}</p>
-      <p><b>Importe total:</b> S/ {{resultadoPago.montosPago.montoNeto}}</p>
+      <br />
+      <p>
+        <b>Fecha de venta:</b> {{ resultadoPago.montosPago.fechaDocumento }}
+      </p>
+      <p>
+        <b>Boleta de venta:</b> {{ resultadoPago.montosPago.numeroDocuPago }}
+      </p>
+      <p><b>Nro de pedido:</b> {{ resultadoPago.montosPago.numeroPedido }}</p>
+      <br />
+      <div style="text-align: right">
+        <p><b>Op. gravada:</b> S/ {{ resultadoPago.montosPago.montoSinIGV }}</p>
+        <p><b>IGV:</b> S/{{ resultadoPago.montosPago.montoIGV }}</p>
+        <p><b>Importe total:</b> S/ {{ resultadoPago.montosPago.montoNeto }}</p>
       </div>
     </div>
     <div *ngIf="resultadoPago.resultado == false">

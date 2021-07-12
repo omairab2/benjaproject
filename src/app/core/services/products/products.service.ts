@@ -16,7 +16,7 @@ export class ProductsService {
 
   getAllProducts() {
     //return this.http.get<Product[]>(`${environment.url_api}/products`);
-    return this.http.get<Product[]>(`https://run.mocky.io/v3/2fe2f5c0-2e70-4afc-a429-e079359ba365`);
+    return this.http.get<Product[]>(`https://vendefacilbackend.azurewebsites.net/vendefacil/api/producto/listar`);
   }
 
   getProduct(id: string) {

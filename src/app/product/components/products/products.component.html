@@ -1,7 +1,27 @@
-<div class="product-grid">
-  <app-product
-    *ngFor="let product of products"
-    (productClicked)="clickProduct($event)"
-    [product]="product">
-  </app-product>
+<div class="main-container">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-3">
+        <div class="filters-wrapper">
+          <app-filters #filtersComponent [categorias]='dataCategorias' [marcas]='dataMarcas' [tipos]='dataTipos' (filterChange)='onFilterChange($event)'></app-filters>
+        </div>
+      </div>
+
+      <div class="col-9">
+        <div class="row" style="padding-left: 120px; margin-bottom: 20px; display: flex; justify-content: flex-end;">
+          <app-search-bar #searchComponent (searchChange)='onSearchChange($event)'></app-search-bar>
+          <!-- <div class="col-12">
+          </div> -->
+        </div>
+        <div class="row" style="padding-left: 100px; margin-bottom: 20px; display: flex; justify-content: flex-end;">
+          <div class="product-grid">
+            <app-product *ngFor="let product of products" (productClicked)="clickProduct($event)" [product]="product"></app-product>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
+<app-loading2 *ngIf="loading"></app-loading2>
